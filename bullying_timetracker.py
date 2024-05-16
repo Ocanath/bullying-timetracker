@@ -23,6 +23,7 @@ if __name__ == "__main__":
 	cost_incurred = 0
 	prev_cost = 0
 	start_time = time.time()
+	
 	print("Starting New Task")
 	print("Whatever you're doing right now has cost...")
 	try:
