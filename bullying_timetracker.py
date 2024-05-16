@@ -4,8 +4,9 @@ import time
 if __name__ == "__main__":
 	
 	parser = argparse.ArgumentParser(description='ArgParser')
-	parser.add_argument('--hourly-rate', type=float, help='what you get paid in dollars per hour')
-	parser.add_argument('--annual-salary', type=float, help='what you get paid per year')
+	parser.add_argument('--hourly_rate', type=float, default=0, help='what you get paid in dollars per hour')
+	parser.add_argument('--annual_salary', type=float, default=0, help='what you get paid per year')
+	parser.add_argument('--dollar_increment', type=float, default=0.01, help="Amount in dollars to increment on the display")
 	args = parser.parse_args()
 
 
@@ -22,9 +23,10 @@ if __name__ == "__main__":
 			cost_incurred = ((hourly_rate / 60) / 60) * time_elapsed 
 
 			
-			if(int( (cost_incurred-prev_cost) * 100) >= 1):
+			if(int( (cost_incurred-prev_cost) / args.dollar_increment ) >= 1):
 				print("$", round(cost_incurred, 2))
 				prev_cost = cost_incurred
 			# time.sleep(1)
+   
 	except KeyboardInterrupt:
 		pass
