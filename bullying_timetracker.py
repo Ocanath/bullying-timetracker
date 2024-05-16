@@ -9,9 +9,15 @@ if __name__ == "__main__":
 	parser.add_argument('--dollar_increment', type=float, default=0.01, help="Amount in dollars to increment on the display")
 	args = parser.parse_args()
 
+	if(args.hourly_rate == 0 and args.annual_salary == 0):
+		print("Error, please provide a salary")
+		exit()
 
-
-	hourly_rate = (135e3/52)/40
+	if(args.hourly_rate != 0):
+		hourly_rate = args.hourly_rate
+	elif(args.annual_salary != 0):
+		hourly_rate = (args.annual_salary/52/40)
+		print("Using", hourly_rate, "as hourly rate")
 	cost_incurred = 0
 	prev_cost = 0
 	start_time = time.time()
